@@ -1,15 +1,17 @@
 package main
 
-// format of relevant kernel specified options
-// %e : executable path (without path prefix)
-// %h : hostname
-// %i : Thread id (in pid namespace)
-// %I : Thread id (in initial namespace)
-// %p : PID (pid namespace)
-// %P : PID (in initial namespace)
-// %s : signal number
-// %t : time of dump in epoch seconds (utc)
-// %u : uid of dumped process.
+// This file provides a binary used with linux's kernel.core_pattern
+// to accept core files and upload them to an s3 bucket.
+// 
+// It expects to receive as positional args:
+// -- the hostname of the generating system
+// -- the name of the executable generating the dump
+// -- the pid of the dumping process
+// -- the time of the dump in epoch seconds (UTC)
+//
+// Example
+//  echo "|/path/to/s3core [flags] %h %e %P %t" >/proc/sys/kernel/core_pattern"
+//
 
 import (
 	"flag"
