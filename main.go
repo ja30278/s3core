@@ -2,7 +2,7 @@ package main
 
 // This file provides a binary used with linux's kernel.core_pattern
 // to accept core files and upload them to an s3 bucket.
-// 
+//
 // It expects to receive as positional args:
 // -- the hostname of the generating system
 // -- the name of the executable generating the dump
@@ -65,7 +65,7 @@ func main() {
 	}
 
 	sess := session.Must(session.NewSession(&aws.Config{
-    CredentialsChainVerboseErrors: aws.Bool(true),
+		CredentialsChainVerboseErrors: aws.Bool(true),
 		Region: aws.String(region),
 	}))
 
